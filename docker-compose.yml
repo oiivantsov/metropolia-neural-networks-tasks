@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  jupyter:
+    image: jupyter/minimal-notebook:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./requirements.txt:/tmp/requirements.txt
+      - ./tasks:/home/jovyan/tasks
+      - ./data:/home/jovyan/data
+    command: >
+      start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''
+      && pip install -r /tmp/requirements.txt
